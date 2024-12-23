@@ -1,6 +1,7 @@
 package com.rozangelapeixoto.first_mongodb.services;
 
 import com.rozangelapeixoto.first_mongodb.domain.User;
+import com.rozangelapeixoto.first_mongodb.dto.UserDTO;
 import com.rozangelapeixoto.first_mongodb.repository.UserRepository;
 import com.rozangelapeixoto.first_mongodb.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,14 @@ public class UserService {
             throw new ObjectNotFoundException("Objeto não encontrado");
         }
         return repo.findById(id).get();
+    }
+
+    public User insert(User obj){
+        return repo.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto){
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 
 }
